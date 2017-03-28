@@ -11,20 +11,24 @@ and open the template in the editor.
 body
 {
     background-color: #E0FFFF;
-    font: 17px/25px "Calibri", Arial, sans-serif;    
+    font: 17px/25px "Calibri", Arial, sans-serif;
 }
 
-nav
-{
-    text-align: center;
-}
-
-#title
+#title1
 {
     color: #111111;
-    font: 35px/40px "Bazooka", Arial, sans-serif;
+    font: 45px/55px "Bazooka", Arial, sans-serif;
     font-weight: bold;  
     text-align:center;
+    background-color: #ecf5f9;
+}
+
+#subtitle
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top: 2px solid #000000;      
+    box-shadow: 0 0 5px #C1FFFF;
 }
 
 h1
@@ -61,12 +65,14 @@ a:link, a:visited
     list-style-type: none; /* toglie l'enumerazione della lista */
 }
 
-#sommario li:after   /* va a capo dopo ogni li in Sommario */
+#sommario
 {
-    content: '\A';
-    white-space: pre; 
+    border-top: 2px solid #111111;      
+    box-shadow: 0 0 5px #C1FFFF;
+    padding-left: 20px;
+    background-color: #ecf5f9;
+    border-bottom: 2px solid #000000;
 }
-
 a:hover
 {
     font-weight: bold; /*cambia la scritta quando sono davanti ad un link */
@@ -88,4 +94,117 @@ a:hover
 #login label
 {
     font: 20px/25px "Calibri";
+}
+
+#loginNav
+{
+    text-align: center;
+}
+
+#LaGiente
+{
+    box-shadow: 0 0 5px #C1FFFF;
+    padding-left: 20px;
+}
+
+#ComeIscriversi
+{
+    border-top: 2px solid #000000;
+    box-shadow: 0 0 5px #C1FFFF;
+    padding-left: 20px;
+}
+
+#Costi
+{
+    border-top: 2px solid #000000;
+    box-shadow: 0 0 5px #C1FFFF;  
+    padding-left: 20px;
+}
+
+#listaPost
+{
+    border-top: 2px solid #000000;
+    border-bottom:  2px solid #000000;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #000000;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.name
+{
+    font: 17px/25px "Bazooka", Arial, sans-serif;
+    font-weight: bold; 
+}
+
+#post1
+{
+    border-top: 2px solid #000000;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-bottom:  2px solid #000000;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #000000;
+    box-shadow: 0 0 5px #C1FFFF;  
+    padding-left: 20px;
+}
+
+#post2
+{
+    border-top: 2px solid #000000;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-bottom:  2px solid #000000;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #000000;
+    box-shadow: 0 0 5px #C1FFFF;  
+    padding-left: 20px;
+}
+
+#post3
+{
+    border-top: 2px solid #000000;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-bottom:  2px solid #000000;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #000000;
+    box-shadow: 0 0 5px #C1FFFF;  
+    padding-left: 20px;
+}
+
+.img1
+{
+    height: 75px;
+    width:  75px;
+}
+/* a discendente da #post3 */
+#post3 a
+{
+    text-decoration: underline;
+}
+
+.navigazione ol li
+{
+    list-style-type: none; /* toglie l'enumerazione della lista */
+    display: inline-block;
+    
+}
+
+.navigazione li
+{
+    padding-left: 20px; /* spazio interno al blocco */
+    padding-right: 20px;
+    border-right: 2px solid #111111;
+    font-weight: bold; 
+}
+
+.navigazione
+{
+    border-bottom: 2px solid #111111;
+    border-top: 2px solid #111111;
+    border-left: 2px solid #111111;
+    border-right: 2px solid #111111;
 }
