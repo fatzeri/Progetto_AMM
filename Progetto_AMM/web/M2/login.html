@@ -1,0 +1,42 @@
+<!DOCTYPE html>  <!-- stiamo creando progetto html 5 -->
+
+<html>  
+    <head>
+        <title>Nerd Book</title>
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Federico Atzeri">
+        <meta name="keywords" content="Nerd book social network">
+        
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+    </head>
+    <body>
+        
+        <header>
+            <div id="title">
+                NERD BOOK
+            </div>
+        </header>
+        <nav>   
+                <a href="descrizione.html">Descrizione</a> - 
+                <a href="profilo.html">Profilo</a> - 
+                <a href="bacheca.html">Bacheca</a>
+        </nav>
+        <div id="divBody">
+            <div id="login">
+                <form action="servlet.java" method="post">
+                    <div>
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" id="username">
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <button type="submit">Invia</button>
+                </form>
+            </div>
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>  <!-- stiamo creando progetto html 5 -->
+
+<html>  
+    <head>
+        <title>Nerd Book</title>
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Federico Atzeri">
+        <meta name="keywords" content="Nerd book social network">
+        
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+    </head>
+    <body>
+        <header>
+            <div id="title">
+                NERD BOOK
+            </div>
+        </header>
+        <nav>   
+                <a href="descrizione.html">Descrizione</a> - 
+                <a href="login.html">Login</a> 
+        </nav>
+        <div id="divBody">
+            <div id="profilo">
+                <form action="servlet.java" method="post">
+                    <div>
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome">
+                    </div>
+                    <div>
+                        <label for="cognome">Cognome:</label>
+                        <input type="text" name="cognome" id="cognome">
+                    </div>
+                    <div>
+                        <label for="url">URL:</label>
+                        <input type="url" name="url" id="url">
+                    </div>
+                    <div>
+                        <label for="presentazione">Parlaci di te:</label>
+                        <textarea name="presentazione" id="presentazione"></textarea>
+                    </div>
+                    <div>
+                        <label for="data">Data di nascita:</label>
+                        <input type="date" name="data" id="data">
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <div>
+                        <label for="cpassword">Conferma Password:</label>
+                        <input type="password" name="cpassword" id="cpassword">
+                    </div>
+                    <button type="submit">Invia</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
