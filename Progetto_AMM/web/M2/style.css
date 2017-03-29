@@ -17,7 +17,7 @@ body
 #title1
 {
     color: #111111;
-    font: 45px/55px "Bazooka", Arial, sans-serif;
+    font: 44px/54px "Bazooka", Arial, sans-serif;
     font-weight: bold;  
     text-align:center;
     background-color: #ecf5f9;
@@ -76,29 +76,6 @@ a:link, a:visited
 a:hover
 {
     font-weight: bold; /*cambia la scritta quando sono davanti ad un link */
-}
-
-#login
-{
-    width: 400px;
-    background-color: #C2EFFF;
-    margin-left: auto;
-    margin-right: auto;
-    border-bottom: 1px solid #000000;
-    border-top: 1px solid #000000;
-    border-right: 1px solid #000000;
-    border-left: 1px solid #000000;
-    box-shadow: 0 0 5px #C1FFFF;
-}
-
-#login label
-{
-    font: 20px/25px "Calibri";
-}
-
-#loginNav
-{
-    text-align: center;
 }
 
 #LaGiente
@@ -180,6 +157,13 @@ a:hover
     height: 75px;
     width:  75px;
 }
+
+#post2 .contenuto img
+{
+    width: 276px;
+    eight: 77px;
+}
+
 /* a discendente da #post3 */
 #post3 a
 {
@@ -207,4 +191,58 @@ a:hover
     border-top: 2px solid #111111;
     border-left: 2px solid #111111;
     border-right: 2px solid #111111;
+}   
+
+#divBodyLogin:before
+{
+    content: '\A';
+    white-space: pre;
 }
+
+#loginBody
+{
+    width: 200px;
+    height: 150px;
+    background-color: #C2EFFF;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-left: 1px solid #000000;
+    box-shadow: 0 0 5px #C1FFFF;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+#loginBody label
+{
+    font: 20px/25px "Calibri";
+    font-weight: bold;
+}
+
+#loginBody label:after  /* quando finisce la label */
+{
+    content: '\A';
+    white-space: pre; /* manda a capo dopo aver definito la label */
+}
+
+#loginBody form input
+{
+    width: 100%;
+    
+}
+
+#postContent input:focus /* quando clicco nella textArea si colora */
+{
+    outline: none;
+    border-color: #22bb22;
+    box-shadow: 0 0 10px #22bb22;
+}
+
+#loginBody form button
+{
+    width: 100%;
+    font-weight: bold;
+}
+
