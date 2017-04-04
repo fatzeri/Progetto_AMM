@@ -11,16 +11,37 @@
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     </head>
     <body>
-        <header>
+        <header class="headerProfBach">
             <div id="title">
                 NERD BOOK
             </div>
-        </header>
-        <nav>   
+            <nav class="navigazione">   
                 <a href="descrizione.html">Descrizione</a> - 
                 <a href="login.html">Login</a> 
-        </nav>
+            </nav>
+        </header>
+        
         <div id="divBody">
+            <div id="colonnaSx">
+            
+            <div>
+                <label for="nome"></label>
+                <input type="text" name="cerca" value="Cerca..." id="nome" >
+            </div>
+             
+            <h2>Persone</h2>
+            <ol>
+                <li>Fabio</li>
+                <li>Davide</li>
+                <li>Alessio</li>
+                <li>Francesco</li>
+            </ol>
+            <h2>Gruppi</h2>
+            <ol>
+                <li>Calcetto</li>
+                <li>Clash of clans</li>
+            </ol>
+            </div>
             <div id="profilo">
                 <form action="servlet.java" method="post">
                     <div>

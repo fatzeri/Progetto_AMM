@@ -11,29 +11,33 @@
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     </head>
     <body>
-        
+        <nav class="navigazioneLogin">   
+            <ol>
+                <li><a href="descrizione.html">Descrizione</a></li>
+                <li><a href="profilo.html">Profilo</a></li>
+                <li><a href="bacheca.html">Bacheca</a></li>
+            </ol>
+        </nav>
         <header>
-            <div id="title">
+            <div id="title1">
                 NERD BOOK
             </div>
         </header>
-        <nav>   
-                <a href="descrizione.html">Descrizione</a> - 
-                <a href="profilo.html">Profilo</a> - 
-                <a href="bacheca.html">Bacheca</a>
-        </nav>
-        <div id="divBody">
-            <div id="login">
-                <form action="servlet.java" method="post">
-                    <div>
-                        <label for="username">Username:</label>
+        
+        <div id="divBodyLogin">
+            <div id="loginBody">
+                <form action="bacheca.html" method="post">
+                    <div class="formLogin">
+                        <label for="username">Username</label>
                         <input type="text" name="username" id="username">
                     </div>
-                    <div>
-                        <label for="password">Password:</label>
+                    <div class="formLogin">
+                        <label for="password">Password</label>
                         <input type="password" name="password" id="password">
                     </div>
-                    <button type="submit">Invia</button>
+                    <div class="formLogin">
+                    <button type="submit">Accedi</button>
+                    </div>
                 </form>
             </div>
             

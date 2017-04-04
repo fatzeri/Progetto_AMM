@@ -12,15 +12,18 @@ body
 {
     background-color: #E0FFFF;
     font: 17px/25px "Calibri", Arial, sans-serif;
+    margin: 0px;
 }
-
-#title1
+/* Descrizione */
+#titleDescr
 {
     color: #111111;
     font: 44px/54px "Bazooka", Arial, sans-serif;
     font-weight: bold;  
     text-align:center;
     background-color: #ecf5f9;
+    height: 50px;
+    
 }
 
 #subtitle
@@ -51,7 +54,6 @@ h3
     font: 20px/25px "Bazooka", Arial, sans-serif;
     font-weight: bold;    
 }
-
 a:link, a:visited  
 {
     font-size: 20px;
@@ -60,7 +62,7 @@ a:link, a:visited
     color: #111111;
 }
 
-#sommario ol li
+#sommario ol li, #colonnaSx ol li
 {
     list-style-type: none; /* toglie l'enumerazione della lista */
 }
@@ -97,13 +99,187 @@ a:hover
     box-shadow: 0 0 5px #C1FFFF;  
     padding-left: 20px;
 }
+/*********************************************************/
+
+/* per il login */
+#title1
+{
+    color: #111111;
+    text-align:center;
+    font: 44px/54px "Bazooka", Arial, sans-serif;
+    font-weight: bold;
+}
+
+.navigazioneLogin
+{
+    float: none;
+}
+
+.navigazioneLogin ol li
+{
+    list-style-type: none; /* toglie l'enumerazione della lista */
+    display: inline-block;
+}
+
+.navigazioneLogin li:last-child
+{
+    border-right: none;
+}
+
+.navigazioneLogin li
+{
+    padding-left: 20px; /* spazio interno al blocco */
+    padding-right: 20px;
+    border-right: 2px solid #111111;
+    font-weight: bold; 
+}
+
+
+#divBodyLogin:before
+{
+    content: '\A';
+    white-space: pre;
+}
+
+#loginBody
+{
+    width: 400px;
+    height: 350px;
+    background-color: #C2EFFF;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-left: 1px solid #000000;
+    box-shadow: 0 0 5px #C1FFFF;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+#loginBody label
+{
+    font: 30px/35px "Calibri";
+    font-weight: bold;
+}
+
+#loginBody label:after  /* quando finisce la label */
+{
+    content: '\A';
+    white-space: pre; /* manda a capo dopo aver definito la label */
+}
+
+#loginBody form input
+{
+    width: 350px;
+    height: 35px;
+}
+
+#postContent input:focus /* quando clicco nella textArea si colora */
+{
+    outline: none;
+    border-color: #22bb22;
+    box-shadow: 0 0 10px #22bb22;
+}
+
+#loginBody form button
+{
+    width: 350px;
+    font: 20px/30px "Calibri";
+    font-weight: bold;
+    height: 35px;
+}
+
+.formLogin
+{
+    padding: 15px;
+}
+/******************************************/
+
+/*bacheca e profilo */
+.headerProfBach
+{
+    background-color: #ecf5f9;
+    margin-top: 10px;
+}
+/* titolo profilo e bacheca */
+#title
+{
+    color: #111111;
+    font: 30px/40px "Bazooka", Arial, sans-serif;
+    font-weight: bold;  
+    width: 30%;
+    height: 100px;
+    float: left;   
+    padding-left: 10px;
+}
+
+.navigazione ol li
+{
+    list-style-type: none; /* toglie l'enumerazione della lista */
+    display: inline-block;
+}
+.navigazione ol
+{
+    margin-top: 5px;
+    padding-left: 0px;
+}
+.navigazione li:last-child
+{
+    border-right: none;
+}
+
+.navigazione li
+{
+    padding-right: 10px;
+    padding-left: 10px;
+    border-right: 2px solid #111111;
+    color: #111111;
+}
+
+.navigazione
+{ 
+    float: left;
+    width: 60%;
+    height: 100px;
+} 
+.navigazione label
+{
+    font: 30px/40px "Bazooka", Arial, sans-serif;
+    font-weight: bold; 
+}
+.navigazione a:link
+{
+    font: 20px/30px "Bazooka", Arial, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: #111111;
+}
+
+#colonnaSx
+{
+    float: left;
+    width: 30%
+}
+#colonnaSx
+{
+    padding-left: 20px;
+}
+
+#colonnaSx, ol li
+{
+    list-style-type: none; /* toglie l'enumerazione della lista */
+}
 
 #listaPost
 {
-    border-top: 2px solid #000000;
-    border-bottom:  2px solid #000000;
+    float: left;
+    width: 60%;
+}
+
+#listaPost
+{
     border-left: 2px solid #000000;
-    border-right: 2px solid #000000;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
@@ -115,6 +291,8 @@ a:hover
     font: 17px/25px "Bazooka", Arial, sans-serif;
     font-weight: bold; 
 }
+
+
 
 #post1
 {
@@ -154,14 +332,25 @@ a:hover
 
 .img1
 {
-    height: 75px;
-    width:  75px;
+    height: 50px;
+    width:  50px;
+    border-radius: 50px;
+    margin-top: 5px;
+    float: left;
+    margin-bottom: 10px;
+}
+text
+{
+    float: left;
+    margin-bottom: 20px;
+    padding-top: 15px;
+    padding-left: 5px;
 }
 
 #post2 .contenuto img
 {
     width: 276px;
-    eight: 77px;
+    height: 77px;
 }
 
 /* a discendente da #post3 */
@@ -170,79 +359,11 @@ a:hover
     text-decoration: underline;
 }
 
-.navigazione ol li
+.contenuto
 {
-    list-style-type: none; /* toglie l'enumerazione della lista */
-    display: inline-block;
-    
+    float: none;
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    font: 20px/30px "Calibri", Arial, sans-serif;
 }
-
-.navigazione li
-{
-    padding-left: 20px; /* spazio interno al blocco */
-    padding-right: 20px;
-    border-right: 2px solid #111111;
-    font-weight: bold; 
-}
-
-.navigazione
-{
-    border-bottom: 2px solid #111111;
-    border-top: 2px solid #111111;
-    border-left: 2px solid #111111;
-    border-right: 2px solid #111111;
-}   
-
-#divBodyLogin:before
-{
-    content: '\A';
-    white-space: pre;
-}
-
-#loginBody
-{
-    width: 200px;
-    height: 150px;
-    background-color: #C2EFFF;
-    margin-left: auto;
-    margin-right: auto;
-    border-bottom: 1px solid #000000;
-    border-top: 1px solid #000000;
-    border-right: 1px solid #000000;
-    border-left: 1px solid #000000;
-    box-shadow: 0 0 5px #C1FFFF;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-}
-#loginBody label
-{
-    font: 20px/25px "Calibri";
-    font-weight: bold;
-}
-
-#loginBody label:after  /* quando finisce la label */
-{
-    content: '\A';
-    white-space: pre; /* manda a capo dopo aver definito la label */
-}
-
-#loginBody form input
-{
-    width: 100%;
-    
-}
-
-#postContent input:focus /* quando clicco nella textArea si colora */
-{
-    outline: none;
-    border-color: #22bb22;
-    box-shadow: 0 0 10px #22bb22;
-}
-
-#loginBody form button
-{
-    width: 100%;
-    font-weight: bold;
-}
-
