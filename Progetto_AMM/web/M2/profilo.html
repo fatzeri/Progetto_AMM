@@ -12,18 +12,26 @@
     </head>
     <body>
         <header class="headerProfBach">
+            <div class="profBachHeaderDiv">
             <div id="title">
-                NERD BOOK
+                NERDBOOK
             </div>
-            <nav class="navigazione">   
-                <a href="descrizione.html">Descrizione</a> - 
-                <a href="login.html">Login</a> 
+            <nav class="navigazione">  
+                <ol>
+                    <li><a href="profilo.html">Profilo</a></li>
+                    <li><a href="bacheca.html">Bacheca</a></li>
+                </ol>
             </nav>
+            <div id="logout">
+                <div id="logoutNome">Federico Atzeri</div>
+                <div id="logoutLink"><a href="descrizione.html">Logout</a></div>
+            </div>
+            </div>
         </header>
         
         <div id="divBody">
             <div id="colonnaSx">
-            
+            <div class="menuSx">
             <div>
                 <label for="nome"></label>
                 <input type="text" name="cerca" value="Cerca..." id="nome" >
@@ -42,37 +50,38 @@
                 <li>Clash of clans</li>
             </ol>
             </div>
+            </div>
             <div id="profilo">
                 <form action="servlet.java" method="post">
-                    <div>
-                        <label for="nome">Nome:</label>
+                    <div class="campo">
+                        <label for="nome">Nome</label>
                         <input type="text" name="nome" id="nome">
                     </div>
-                    <div>
-                        <label for="cognome">Cognome:</label>
+                    <div class="campo">
+                        <label for="cognome">Cognome</label>
                         <input type="text" name="cognome" id="cognome">
                     </div>
-                    <div>
-                        <label for="url">URL:</label>
+                    <div class="campo">
+                        <label for="url">URL</label>
                         <input type="url" name="url" id="url">
                     </div>
-                    <div>
-                        <label for="presentazione">Parlaci di te:</label>
+                    <div class="campo">
+                        <label for="presentazione">Frase di presentazione</label>
                         <textarea name="presentazione" id="presentazione"></textarea>
                     </div>
-                    <div>
-                        <label for="data">Data di nascita:</label>
+                    <div class="campo">
+                        <label for="data">Nato il</label>
                         <input type="date" name="data" id="data">
                     </div>
-                    <div>
-                        <label for="password">Password:</label>
+                    <div class="campo">
+                        <label for="password">Password</label>
                         <input type="password" name="password" id="password">
                     </div>
-                    <div>
-                        <label for="cpassword">Conferma Password:</label>
+                    <div class="campo">
+                        <label for="cpassword">Conferma Password</label>
                         <input type="password" name="cpassword" id="cpassword">
                     </div>
-                    <button type="submit">Invia</button>
+                    <button type="submit">Aggiorna</button>
                 </form>
             </div>
         </div>
