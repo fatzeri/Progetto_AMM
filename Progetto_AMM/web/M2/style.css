@@ -173,6 +173,7 @@ a:hover
     border-left: 1px solid #000000;
     box-shadow: 0 0 5px #C1FFFF;
 }
+
 #loginBody label
 {
     font: 30px/35px "Calibri";
@@ -188,7 +189,7 @@ a:hover
 #loginBody form input
 {
     width: 100%;
-    height: 35px;
+    height: 25px;
 }
 
 #postContent input:focus /* quando clicco nella textArea si colora */
@@ -246,7 +247,6 @@ a:hover
 }
 #logout
 {
-    /*background-color: #C0E1FF;*/
     float: right;
     /*width: 20%;*/
     width: 160px;
@@ -306,17 +306,20 @@ a:hover
     color: #111111;
 }
 
+.attuale a
+{
+    color: #ffffff;
+}
+
+
 #colonnaSx
 {
-    float: left;
-    width: 250px;
     padding-left: 20px;
     height: auto;
     padding-top: 100px;
 }
 .menuSx
 {
-    position: fixed;
     height: 100%;
 }
 
@@ -327,14 +330,8 @@ a:hover
 
 #listaPost
 {
-    /*border-left: 5px solid #ffffff;*/
-    padding-left: 20px;
-    padding-right: 20px;
     padding-bottom: 40px;
     float: left;
-    width: 60%;
-    padding-top: 100px;
-    border-left: 5px solid #ffffff;
 }
 
 .name
@@ -343,33 +340,17 @@ a:hover
     font-weight: bold; 
 }
 
-
-
-#post1
+#frase
 {
-    border-top: 2px solid #000000;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    border-bottom:  2px solid #000000;
-    border-left: 2px solid #000000;
-    border-right: 2px solid #000000;
-    box-shadow: 0 0 5px #C1FFFF;  
-    padding-left: 20px;
+    
+    border: 3px solid #ffffff;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 4px;
 }
+  
 
-#post2
-{
-    border-top: 2px solid #000000;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    border-bottom:  2px solid #000000;
-    border-left: 2px solid #000000;
-    border-right: 2px solid #000000;
-    box-shadow: 0 0 5px #C1FFFF;  
-    padding-left: 20px;
-}
-
-#post3
+.post
 {
     border-top: 2px solid #000000;
     margin-bottom: 20px;
@@ -398,14 +379,14 @@ text
     padding-left: 5px;
 }
 
-#post2 .contenuto img
+.post .contenuto img
 {
     width: 276px;
     height: 77px;
 }
 
 /* a discendente da #post3 */
-#post3 a
+.post a
 {
     text-decoration: underline;
 }
@@ -421,12 +402,7 @@ text
 
 #profilo
 {
-    padding-top: 120px;
     float: left;
-    height: 480px;
-    border-left: 5px solid #ffffff;
-    width: 500px;
-    /*padding-left: 20px;*/
     font: 20px/30px "Bazooka", Arial, sans-serif;
     font-weight: bold;
     padding-left: 50px;
@@ -449,9 +425,276 @@ text
 #profilo label
 {
     padding-bottom: 5px;
+    margin-right: 10px;
 }
 
-.campo
+
+
+@media only screen and (min-width: 1024px)
 {
-    height: 50px;
+    .campo
+    {
+        height: 50px;
+    }
+    
+    #colonnaSx
+    {
+        float: left;
+        width: 250px;
+    }
+    
+    .menuSx
+    {
+        position: fixed;
+    }
+    
+    #profilo
+    {
+        padding-top: 120px;
+        height: 480px;
+        border-left: 5px solid #ffffff;
+        width: 550px;
+    }
+    
+    #listaPost
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 60%;
+    padding-top: 100px;
+    border-left: 5px solid #ffffff;
+}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 1024px) 
+{
+    .subMenu
+    {
+        float: left;
+        margin-right: 10px;
+    }
+    
+    #colonnaSx
+    {
+        float: none;
+        width: 100%;
+        position: static;
+        padding-left: 0px;
+        
+    }
+    
+    .menuSx
+    {
+        position: static;
+        height: auto;
+        margin-top: 10px;
+        padding-left: 10px;
+    }
+    
+    
+    #listaPost
+    {
+        border: 0px;
+        width: 100%;
+        padding-top: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    
+    .navigazione ol, .navigazione
+    {
+        width: auto;
+    }
+    
+    #logout
+    {
+        padding-right: 0px;
+        float:left;
+    }
+    
+    #title
+    {
+        padding: 0px;
+    }
+    .navigazione
+    {
+        padding: 0px;
+    }
+    
+    #profilo
+    {
+        border: 0px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        height: auto;
+        width: 100%;
+        border-top: 2px solid #ffffff;
+    }
+    #profilo input, textarea
+    {
+        float: none;
+    }
+    
+    #profilo label:after
+    {
+        content: '\A';
+        white-space: pre;
+    }
+    .campo
+    {
+        height: auto;
+    }
+    
+    #profilo button
+    {
+        width: 55%;
+        font: 15px/25px "Bazooka", Arial, sans-serif;
+        margin-top: 5px;
+        
+    }
+}
+
+@media only screen and (max-width: 480px)
+{
+    /****** Descrizione ******/
+    
+    #titleDescr
+    {
+        color: #FFE118;
+        font: 34px/34px "Lucida Bright", Arial, sans-serif;
+        font-weight: bold;  
+        text-align:center;
+        background-color: #2181FF;
+        height: 40px;
+    }
+    h1
+    {
+        color: #111111;
+        font: 25px/30px "Bazooka", Arial, sans-serif;
+        font-weight: bold;    
+    }
+    #tittleDescr, #sommario, #LaGiente
+    {
+        padding-left: 5px;
+    }
+    
+    /****** Login ******/
+    
+    #loginBody
+    {
+        width: 250px;
+    }
+    #title1
+    {
+        font: 30px/40px "Bazooka", Arial, sans-serif;
+    }
+    #imgLogin
+    {
+        padding-right: 10px;
+    }
+    #headerLogin
+    {
+        width: 250px;
+    }
+    
+    /***** Profilo e Bacheca *****/
+       
+    #colonnaSx
+    {
+        float: none;
+        padding-top: 170px;
+        border-bottom: 2px solid #ffffff;
+        padding-bottom: 8px;
+        width: 100%;
+        padding-left: 0px;
+    }
+    #logout
+    {
+        float: left;
+        
+    }
+    #title1, .navigazione label
+    {
+        font: 20px/30px "Bazooka", Arial, sans-serif;
+        text-align: left;
+    }
+    
+    #listaPost
+    {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+        float: none;
+        border: 0px;
+        padding-top: 10px;
+    }
+    .menuSx
+    {
+        position: static;
+    }
+    .menuSx h2
+    {
+        font: 20px/25px "Bazooka", Arial, sans-serif;
+        margin: 5px;
+    }
+    .menuSx li, .menuSx ol
+    {
+        margin: 3px;
+    }
+    #frase, #post1, #post2, #post3
+    {
+        padding-left: 4px;
+    }
+    .post
+    {
+        border: 0px;
+        box-shadow: 0 0 0px #000000;
+    }
+    
+    .contenuto
+    {
+        padding-left: 0px;
+    }
+    
+    .contenuto img
+    {
+        max-width: 200px;
+    }
+    
+    
+    #profilo
+    {
+        padding: 10px;
+        border: 0px;
+        font: 15px/25px "Bazooka", Arial, sans-serif;
+        width: auto;
+        height: auto;
+    }
+    
+    #profilo input, textarea
+    {
+        width: 180px;
+        float: none;
+    }
+    
+    
+    #profilo button
+    {
+        width: 180px;
+        font: 15px/25px "Bazooka", Arial, sans-serif;
+        margin-top: 5px;
+    }
+    
+    #profilo label:after
+    {
+        content: '\A';
+        white-space: pre;
+    }
+    
+    .campo
+    {
+        height: auto;
+    }
 }

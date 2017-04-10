@@ -18,7 +18,7 @@
             </div>
             <nav class="navigazione">  
                 <ol>
-                    <li><a href="profilo.html">Profilo</a></li>
+                    <li class="attuale"><a href="profilo.html">Profilo</a></li>
                     <li><a href="bacheca.html">Bacheca</a></li>
                 </ol>
             </nav>
@@ -36,19 +36,22 @@
                 <label for="nome"></label>
                 <input type="text" name="cerca" value="Cerca..." id="nome" >
             </div>
-             
-            <h2>Persone</h2>
-            <ol>
-                <li>Fabio</li>
-                <li>Davide</li>
-                <li>Alessio</li>
-                <li>Francesco</li>
-            </ol>
-            <h2>Gruppi</h2>
-            <ol>
-                <li>Calcetto</li>
-                <li>Clash of clans</li>
-            </ol>
+                <div class="subMenu">
+                    <h2>Persone</h2>
+                    <ol>
+                        <li>Fabio</li>
+                        <li>Davide</li>
+                        <li>Alessio</li>
+                        <li>Francesco</li>
+                    </ol>
+                </div>
+                <div class="subMenu">
+                    <h2>Gruppi</h2>
+                        <ol>
+                            <li>Calcetto</li>
+                            <li>Clash of clans</li>
+                        </ol>
+                </div>
             </div>
             </div>
             <div id="profilo">
@@ -67,7 +70,7 @@
                     </div>
                     <div class="campo">
                         <label for="presentazione">Frase di presentazione</label>
-                        <textarea name="presentazione" id="presentazione"></textarea>
+                        <textarea name="presentazione" placeholder="Chi non rosika non risika" id="presentazione" ></textarea>
                     </div>
                     <div class="campo">
                         <label for="data">Nato il</label>
