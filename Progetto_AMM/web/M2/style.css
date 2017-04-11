@@ -243,7 +243,6 @@ a:hover
     width: 240px;
     float: left;  
     line-height: 50px;
-    text-align: center;
 }
 #logout
 {
@@ -432,6 +431,10 @@ text
 
 @media only screen and (min-width: 1024px)
 {
+    #title
+    {
+        text-align: center;
+    }
     .campo
     {
         height: 50px;
@@ -515,6 +518,7 @@ text
     #title
     {
         padding: 0px;
+        text-align: center;
     }
     .navigazione
     {
@@ -615,10 +619,21 @@ text
         float: left;
         
     }
-    #title1, .navigazione label
+    #title, .navigazione label
     {
-        font: 20px/30px "Bazooka", Arial, sans-serif;
+        font: 25px/35px "Bazooka", Arial, sans-serif;
+        font-weight: bold;
         text-align: left;
+    }
+    
+    #title
+    {
+        line-height: 50px;
+    }
+    
+    .navigazione li
+    {
+        border-right: 0px;
     }
     
     #listaPost
