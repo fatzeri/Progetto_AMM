@@ -6,6 +6,7 @@
 package M3.classi;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,7 +23,7 @@ public class GruppiFactory {
     }
 
     private ArrayList<Gruppo> listaGruppi = new ArrayList<Gruppo>();
-
+    
     private GruppiFactory() {
         //Creazione gruppi
         UtenteFactory utenteFactory = UtenteFactory.getInstance();
@@ -61,5 +62,9 @@ public class GruppiFactory {
             }
         }
         return null;
+    }
+    
+    public ArrayList<Gruppo> getListaGruppi(){
+        return listaGruppi;
     }
 }

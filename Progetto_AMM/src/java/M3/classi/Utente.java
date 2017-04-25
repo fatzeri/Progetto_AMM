@@ -142,7 +142,17 @@ public class Utente
     public void setUrlFotoProfilo(String urlFotoProfilo) {
         this.urlFotoProfilo = urlFotoProfilo;
     }
-
+    
+    public boolean controllaProfilo()
+    {
+        if(this.cognome != "" &&
+           this.urlFotoProfilo != "" &&
+           this.dataNascita != "" &&
+           this.frasePresentazione != "")
+            return true;
+        return false;
+    }
+    
     @Override
     public boolean equals(Object altroUtente) {
         if (altroUtente instanceof Utente)

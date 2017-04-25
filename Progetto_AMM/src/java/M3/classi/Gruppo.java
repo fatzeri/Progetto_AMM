@@ -102,7 +102,7 @@ public class Gruppo {
         int i;
         for(i=0; i < DIM; i++)
         {
-            if(this.utenti[i].equals(utente))
+            if(this.utenti[i].getId() == utente.getId())
                 return true;
         }
         return false;

@@ -13,16 +13,18 @@ public class Post {
 
     private int id;
     private Utente user;
+    private String text;
     private String content;
     private Type postType;
     
     public enum Type {
-        TEXT, IMAGE
+        TEXT, IMAGE, LINK
     };
     
     public Post() {
         id = 0;
         user = null;
+        text="";
         content = "";
         postType = Type.TEXT;
     }
@@ -52,6 +54,20 @@ public class Post {
      */
     public void setUser(Utente user) {
         this.user = user;
+    }
+    
+    /**
+     * @return the text
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * @param text the user to set
+     */
+    public void setText(String text) {
+        this.text = text;
     }
 
     /**

@@ -27,35 +27,35 @@ public class UtenteFactory {
     private UtenteFactory() {
         //Creazione utenti
 
-        //Federico
+        //Andonio
         Utente utente1 = new Utente();
         utente1.setId(0);
         utente1.setNome("Andonio");
         utente1.setCognome("Cipolla");
-        utente1.setDataNascita("16/02/1980");
-        utente1.setFrasePresentazione("Non c'è niente di meglio che un piatto di pasta con fagioli");
+        utente1.setDataNascita("1980-02-16");
+        utente1.setFrasePresentazione("Non c'e' niente di meglio che un piatto di pasta con fagioli");
         utente1.setEmail("utente1@gmail.com");
         utente1.setPassword("123");
         utente1.setUrlFotoProfilo("img/utente1.jpg");
 
-        //Achille
+        //Djanni
         Utente utente2 = new Utente();
         utente2.setId(1);
         utente2.setNome("Djanni");
         utente2.setCognome("Tocco");
-        utente2.setDataNascita("16/05/2010");
-        utente2.setFrasePresentazione("Miaooooooooooo");
+        utente2.setDataNascita("2010-05-10");
+        //utente2.setFrasePresentazione("Miaoooooooo");
         utente2.setEmail("utente2@gmail.com");
         utente2.setPassword("123");
         utente2.setUrlFotoProfilo("img/utente2.jpg");
         
-        //Dario
+        //Javier
         Utente utente3 = new Utente();
         utente3.setId(2);
         utente3.setNome("Javier");
         utente3.setCognome("Zanetti");
-        utente3.setDataNascita("10/08/1973");
-        utente3.setFrasePresentazione("FOZZA INDà");
+        utente3.setDataNascita("1973-08-10");
+        utente3.setFrasePresentazione("FOZZA INDa'");
         utente3.setEmail("utente3@gmail.com");
         utente3.setPassword("123");
         utente3.setUrlFotoProfilo("img/utente3.jpg");
@@ -72,5 +72,8 @@ public class UtenteFactory {
             }
         }
         return null;
+    }
+    public ArrayList<Utente> getListaUtenti(){
+        return listaUtenti;
     }
 }
