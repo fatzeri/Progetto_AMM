@@ -152,12 +152,12 @@ public class Utente
             return true;
         return false;
     }
-    
+    /*
     @Override
     public boolean equals(Object altroUtente) {
         if (altroUtente instanceof Utente)
             if (this.getId() == ((Utente)altroUtente).getId()) return true;
         return false;
-    }
+    }*/
 }
 

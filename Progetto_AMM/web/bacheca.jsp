@@ -41,27 +41,27 @@
                             <div>
                                 <textarea name="textPost" id="textPost">Scrivi qualcosa...</textarea>
                             </div>
-                        </div>                        
+                        </div>
                         <input type="hidden" name="idUtente" value="${user.getId()}">
                         <div>
                             <input type="radio" name="postType" value="TEXT" checked="checked" /> Testo
                             <input type="radio" name="postType" value="IMAGE" /> Immagine
                             <input type="radio" name="postType" value="LINK" /> Link
                         </div>
-                        <div>
+                        <div id="allegato">
                             <label for="allegato">Allegato</label>
                             <input type="text" name="allegato"/>
                         </div>
                         <div id="button"><button type="submit">Scrivi</button></div>
                     </form>
                 </div>
-                <div>${mexConferma} ${nome}!</div>
+                <div class="messaggio">${mexConferma} ${nome}</div>
                 <!-- lista dei post-->
                 <c:forEach var="post" items="${posts}">
                     <div class="post">
                         <div class="name">
-                            <img class="img1" alt="foto di ${user.getNome()} ${user.getCognome()}" src="${user.getUrlFotoProfilo()}">
-                            <div class="text">${user.getNome()} ${user.getCognome()}</div>
+                            <img class="img1" alt="foto di ${post.user.getNome()} ${post.user.getCognome()}" src="${post.user.getUrlFotoProfilo()}">
+                            <div class="text">${post.user.getNome()} ${post.user.getCognome()}</div>
                         </div>
                         <div class="contenuto">
                             <c:if test="${post.postType == 'TEXT'}">

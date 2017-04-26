@@ -5,17 +5,24 @@
  */
 package M3.classi;
 
+import java.util.ArrayList;
+import M3.classi.Gruppo;
+import M3.classi.GruppiFactory;
+import M3.classi.Post;
+import M3.classi.PostFactory;
+import M3.classi.Utente;
+import M3.classi.UtenteFactory;
 /**
  *
  * @author Federico
  */
 public class Gruppo {
-    
+   
     private int id;
     private String nome;
     private String frasePresentazione;    
     private String urlFotoGruppo;
-    private Utente utenti[];
+    private ArrayList<Utente> utenti = new ArrayList<>();
     final static int DIM = 50;
     /**
      * @return the id
@@ -72,39 +79,34 @@ public class Gruppo {
     public void setUrlFotoGruppo(String urlFotoGruppo) {
         this.urlFotoGruppo = urlFotoGruppo;
     }
-
-    /**
-     * @return the utenti
-     */
-    public Utente[] getUtenti() {
-        return utenti;
-    }
-
-    /**
-     * @param utenti the utenti to set
-     */
-    public void setUtenti(Utente[] utenti) {
-        this.utenti = utenti;
-    }
     
     public Utente getUtente(int id)
     {
-        return utenti[id];
+        return (Utente) UtenteFactory.getInstance().getUtenteById(id);
     }
     
-    public void editUtente(Utente utente)
-    {
-        this.utenti[utente.getId()] = utente;
-    }
     //controlla se un utente appartiene al gruppo
-    public boolean controlUtente(Utente utente)
+    public boolean controlUtente(Utente x)
     {
         int i;
-        for(i=0; i < DIM; i++)
-        {
-            if(this.utenti[i].getId() == utente.getId())
-                return true;
-        }
-        return false;
+        for (Utente utente : this.getUtenti()){
+            if(utente.getId() == x.getId())
+            return true;
+        }  
+        return false; 
+    }
+    
+    /**
+     * @param utenti the utenti to set
+     */
+    public void setUtenti(ArrayList<Utente> utenti) {
+        this.utenti = utenti;
+    }
+    
+    /**
+     * @return the utenti
+     */
+    public ArrayList<Utente> getUtenti() {
+        return utenti;
     }
 }

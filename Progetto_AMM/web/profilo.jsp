@@ -58,7 +58,7 @@
                     
                     <button type="submit">Aggiorna</button>
                     
-                    <div id="aggiornati">${aggiornati}</div>
+                    <div class="messaggio">${aggiornati}</div>
                 </form>
             </div>
         </div>

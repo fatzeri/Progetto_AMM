@@ -33,9 +33,8 @@ public class GruppiFactory {
         gruppo1.setId(0);
         gruppo1.setNome("Clash Of clans");
         gruppo1.setFrasePresentazione("Solo per utenti pro!");
-        Utente utenti[] = new Utente[gruppo1.DIM];
-        utenti[0] = utenteFactory.getUtenteById(0); 
-        utenti[1] = utenteFactory.getUtenteById(1);
+        gruppo1.getUtenti().add(utenteFactory.getUtenteById(0));
+        gruppo1.getUtenti().add(utenteFactory.getUtenteById(1));
         gruppo1.setUrlFotoGruppo("img/gruppo1.jpg");
         
 
@@ -45,11 +44,9 @@ public class GruppiFactory {
         gruppo2.setNome("Interisti per sempre");
         gruppo2.setFrasePresentazione("#AMALA");
         gruppo2.setUrlFotoGruppo("img/gruppo2.jpg");
-        utenti = new Utente[gruppo2.DIM];
-        utenti[0] = utenteFactory.getUtenteById(2); 
-        utenti[1] = utenteFactory.getUtenteById(1);
-        gruppo2.setUtenti(utenti);
-
+        gruppo2.getUtenti().add(utenteFactory.getUtenteById(0));
+        gruppo2.getUtenti().add(utenteFactory.getUtenteById(2));
+        
         listaGruppi.add(gruppo1);
         listaGruppi.add(gruppo2);
         
