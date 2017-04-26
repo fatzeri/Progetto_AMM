@@ -16,6 +16,10 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>M3.servlet.Logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NuovoPost</servlet-name>
+        <servlet-class>M3.servlet.NuovoPost</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Bacheca</servlet-name>
         <url-pattern>/Bacheca</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NuovoPost</servlet-name>
+        <url-pattern>/NuovoPost</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

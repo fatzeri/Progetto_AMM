@@ -26,27 +26,36 @@
         <div id="divBody">
             <div id="colonnaSx">
                 <jsp:include page="menuSx.jsp"/>
-            </div>
-                
-                <!-- nuovo post 
-                <div id="formNewPost">
-                    <form action="servlet.java" method="post">
-                        <div id="postContent">
-                            <div>
-                                <textarea name="textPost" placeholder="Scrivi qualcosa..." id="textPost"></textarea>
-                            </div>
-                        </div>
-                        <button type="submit">Scrivi</button>
-                    </form>
-                </div>
-                -->
+            </div>                
             
             <div id="listaPost">
+              
                 <!-- frase di presentazione dell'utente -->
                 <div id="frase">
                     ${user.getNome()} ${user.getCognome()} : ${user.getFrasePresentazione()} 
                 </div>
                 
+                <div id="formNewPost">
+                    <form action="NuovoPost" method="post">
+                        <div id="postContent">
+                            <div>
+                                <textarea name="textPost" id="textPost">Scrivi qualcosa...</textarea>
+                            </div>
+                        </div>                        
+                        <input type="hidden" name="idUtente" value="${user.getId()}">
+                        <div>
+                            <input type="radio" name="postType" value="TEXT" checked="checked" /> Testo
+                            <input type="radio" name="postType" value="IMAGE" /> Immagine
+                            <input type="radio" name="postType" value="LINK" /> Link
+                        </div>
+                        <div>
+                            <label for="allegato">Allegato</label>
+                            <input type="text" name="allegato"/>
+                        </div>
+                        <div id="button"><button type="submit">Scrivi</button></div>
+                    </form>
+                </div>
+                <div>${mexConferma} ${nome}!</div>
                 <!-- lista dei post-->
                 <c:forEach var="post" items="${posts}">
                     <div class="post">
@@ -69,6 +78,7 @@
                         </div>
                     </div>
                 </c:forEach>
+                
             </div>
         </div>
     </body>
