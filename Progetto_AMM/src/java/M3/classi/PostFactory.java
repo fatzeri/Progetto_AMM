@@ -58,7 +58,7 @@ public class PostFactory {
         post4.setPostType(Post.Type.TEXT);
 
         Post post5 = new Post();
-        post5.setText("ROSIKATE");
+        post5.setText("Giusto per ricordare....");
         post5.setContent("https://www.google.it/search?q=triplete+inter&rlz=1C1CHZL_itIT679IT679&tbm=isch&imgil=GEoyxK5Ind0YGM%253A%253BxoYtDPzqhM-SrM%253Bhttp%25253A%25252F%25252Fwww.memegen.it%25252Fmemes%25252Ftriplete_inter&source=iu&pf=m&fir=GEoyxK5Ind0YGM%253A%252CxoYtDPzqhM-SrM%252C_&usg=__Ybez3OkdsvPJ0BVonbAXsUnHp4c%3D&biw=1366&bih=662&ved=0ahUKEwjDmoz47tXSAhXLuhoKHQsEC8wQyjcILQ&ei=ntDHWMPTEMv1aouIrOAM#imgrc=GEoyxK5Ind0YGM:");
         post5.setId(4);
         post5.setUser(utenteFactory.getUtenteById(2));
