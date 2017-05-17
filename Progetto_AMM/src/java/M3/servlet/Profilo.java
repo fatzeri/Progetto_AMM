@@ -11,6 +11,7 @@ import M3.classi.PostFactory;
 import M3.classi.Utente;
 import M3.classi.UtenteFactory;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,8 +40,6 @@ public class Profilo extends HttpServlet {
         
         
         request.setAttribute("page", "profilo");
-        request.setAttribute("users", UtenteFactory.getInstance().getListaUtenti());
-        request.setAttribute("groups", GruppiFactory.getInstance().getListaGruppi());
 
         // Recupero della sessione
         HttpSession session = request.getSession(false);
@@ -60,7 +59,7 @@ public class Profilo extends HttpServlet {
                     // Dati inviati dal form
                     user.setNome((String) request.getParameter("nome"));
                     user.setCognome((String) request.getParameter("cognome"));
-                    user.setDataNascita((String) request.getParameter("data"));
+                    user.setDataNascita( Date.valueOf( request.getParameter("data")));
                     user.setFrasePresentazione((String) request.getParameter("presentazione"));
                     user.setPassword((String) request.getParameter("password"));
                     user.setUrlFotoProfilo((String) request.getParameter("url"));

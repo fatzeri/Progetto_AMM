@@ -12,6 +12,7 @@ import M3.classi.PostFactory;
 import M3.classi.Utente;
 import M3.classi.UtenteFactory;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

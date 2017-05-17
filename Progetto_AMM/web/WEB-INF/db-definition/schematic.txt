@@ -1,0 +1,52 @@
+- Utente   
+    Attributo               Tipo                    Relazioni    
+    id                  int auto increment          Primary key
+    nome                varchar(256)                unique
+    cognome             varchar(256)            
+    dataNascita         varchar(10)
+    frasePresentazione  varchar(256)
+    email               varchar(256)
+    password            varchar(256)                
+    urlFotoProfilo      varchar(256)
+
+- Post
+    Attributo               Tipo                    Relazioni  
+    id                  integer auto increment      Primary key
+    /* Utente autore del post */
+    user                integer                     Foreign key (si collega ad: id utente)
+    text                varchar(256)
+    content             varchar(256)        
+    postType            integer                     Foreign key (si collega ad: id Type)
+    /* Gruppo destinatario del post */
+    groupDest           integer                     Foreign key (si collega ad: id gruppo)
+    /* Utente destinatario del post */
+    userDest            integer                     Foreign key (si collega ad: id utente) 
+
+foreign key user -> Utente.id       uno a molti
+foreign key postType -> Type.id     uno a molti
+foreign key groupDest -> Gruppo.id  uno a molti
+foreign key userDest -> Utente.id   uno a molti
+
+- Type
+    Attributo               Tipo                    Relazioni  
+    id                  integer auto increment      Primary key
+    nome                varchar(256)                unique
+
+- Gruppo                
+    Attributo               Tipo                    Relazioni 
+    id                  integer auto increment      Primary key
+    nome                varchar(256)                unique
+    frasePresentazione  varchar(256)                
+    urlFotoProfilo      varchar(256)                
+    admin               integer                     Foreign key (si collega ad: id utente)
+
+foreign key admin -> Utente.id      uno a molti
+
+- Amicizie
+    Attributo               Tipo                    Relazioni
+    follower            integer                     Foreign key (si collega ad: id utente)
+    followed            integer                     Foreign key (si collega ad: id utente)
+    (follower,followed)                             Primary key
+
+foreign key follower -> Utente.id   uno a molti
+foreign key followed -> Utente.id   uno a molti

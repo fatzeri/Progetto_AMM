@@ -17,13 +17,13 @@ import M3.classi.UtenteFactory;
  * @author Federico
  */
 public class Gruppo {
-   
+
     private int id;
     private String nome;
     private String frasePresentazione;    
     private String urlFotoGruppo;
+    private Utente admin;
     private ArrayList<Utente> utenti = new ArrayList<>();
-    final static int DIM = 50;
     /**
      * @return the id
      */
@@ -83,6 +83,20 @@ public class Gruppo {
     public Utente getUtente(int id)
     {
         return (Utente) UtenteFactory.getInstance().getUtenteById(id);
+    }
+    
+    /**
+     * @return the admin
+     */
+    public Utente getAdmin() {
+        return admin;
+    }
+
+    /**
+     * @param admin the admin to set
+     */
+    public void setAdmin(Utente admin) {
+        this.admin = admin;
     }
     
     //controlla se un utente appartiene al gruppo

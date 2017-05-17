@@ -5,6 +5,8 @@
  */
 package M3.classi;
 
+import java.sql.Date;
+
 /**
  *
  * @author Federico
@@ -14,7 +16,7 @@ public class Utente
     private int id;
     private String nome;
     private String cognome;
-    private String dataNascita;
+    private Date dataNascita;
     private String frasePresentazione;
     private String email;
     private String password;
@@ -24,7 +26,7 @@ public class Utente
         id = 0;
         nome = "";
         cognome = "";
-        dataNascita = "";
+        dataNascita = null;
         frasePresentazione = "";
         email = "";
         password = "";
@@ -76,14 +78,14 @@ public class Utente
     /**
      * @return the dataNascita
      */
-    public String getDataNascita() {
+    public Date getDataNascita() {
         return dataNascita;
     }
 
     /**
      * @param dataNascita the dataNascita to set
      */
-    public void setDataNascita(String dataNascita) {
+    public void setDataNascita(Date dataNascita) {
         this.dataNascita = dataNascita;
     }
 
@@ -147,7 +149,7 @@ public class Utente
     {
         if(this.cognome != "" &&
            this.urlFotoProfilo != "" &&
-           this.dataNascita != "" &&
+           this.dataNascita != null &&
            this.frasePresentazione != "")
             return true;
         return false;

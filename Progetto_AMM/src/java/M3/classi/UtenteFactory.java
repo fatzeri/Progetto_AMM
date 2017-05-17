@@ -5,6 +5,11 @@
  */
 package M3.classi;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -21,59 +26,134 @@ public class UtenteFactory {
         }
         return singleton;
     }
-
-    private ArrayList<Utente> listaUtenti = new ArrayList<Utente>();
+    
+    //Gestione DB
+    private String connectionString;
+    
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+    
+    public String getConnectionString(){
+            return this.connectionString;
+    }
+    //Fine gestione DB
 
     private UtenteFactory() {
-        //Creazione utenti
-
-        //Andonio
-        Utente utente1 = new Utente();
-        utente1.setId(0);
-        utente1.setNome("Andonio");
-        utente1.setCognome("Cipolla");
-        utente1.setDataNascita("1980-02-16");
-        utente1.setFrasePresentazione("Non c'e' niente di meglio che un piatto di pasta con fagioli");
-        utente1.setEmail("utente1@gmail.com");
-        utente1.setPassword("123");
-        utente1.setUrlFotoProfilo("img/utente1.jpg");
-
-        //Djanni
-        Utente utente2 = new Utente();
-        utente2.setId(1);
-        utente2.setNome("Djanni");
-        utente2.setCognome("Tocco");
-        utente2.setDataNascita("2010-05-10");
-        //utente2.setFrasePresentazione("Miaoooooooo");
-        utente2.setEmail("utente2@gmail.com");
-        utente2.setPassword("123");
-        utente2.setUrlFotoProfilo("img/utente2.jpg");
-        
-        //Javier
-        Utente utente3 = new Utente();
-        utente3.setId(2);
-        utente3.setNome("Javier");
-        utente3.setCognome("Zanetti");
-        utente3.setDataNascita("1973-08-10");
-        utente3.setFrasePresentazione("FOZZA INDa'");
-        utente3.setEmail("utente3@gmail.com");
-        utente3.setPassword("123");
-        utente3.setUrlFotoProfilo("img/utente3.jpg");
-
-        listaUtenti.add(utente1);
-        listaUtenti.add(utente2);
-        listaUtenti.add(utente3);
     }
 
     public Utente getUtenteById(int id) {
-        for (Utente utente : this.listaUtenti) {
-            if (utente.getId() == id) {
-                return utente;
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+            
+            String query = 
+                      "select * from utente "
+                    + "where utente_id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, id);
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+            // ciclo sulle righe restituite
+            if (res.next()) {
+                Utente current = new Utente();
+                current.setId(res.getInt("utente_id"));
+                current.setNome(res.getString("nome"));
+                current.setCognome(res.getString("cognome"));
+                current.setDataNascita(res.getDate("dataNascita"));
+                current.setFrasePresentazione(res.getString("frasePresentazione"));
+                current.setEmail(res.getString("email"));
+                current.setPassword(res.getString("password"));
+                current.setUrlFotoProfilo(res.getString("urlFotoProfilo"));
+
+                stmt.close();
+                conn.close();
+                return current;
             }
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
-    public ArrayList<Utente> getListaUtenti(){
-        return listaUtenti;
+    
+    public int getIdByUserAndPassword(String user, String password){
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+            
+            String query = 
+                      "select utente_id from utente "
+                    + "where nome = ? and password = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setString(1, user);
+            stmt.setString(2, password);
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+            // ciclo sulle righe restituite
+            if (res.next()) {
+                int id = res.getInt("utente_id");
+
+                stmt.close();
+                conn.close();
+                return id;
+            }
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+        
+    }
+    public ArrayList<Utente> getListaUtenti() {
+        try {
+        ArrayList<Utente> listaUtenti = new ArrayList<Utente>();
+        
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+            
+            String query =  "select * from utenti ";
+           
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+            
+            while (res.next()) {
+                Utente current = new Utente();
+                
+                current.setId(res.getInt("utente_id"));
+                current.setNome(res.getString("nome"));
+                current.setCognome(res.getString("cognome"));
+                current.setDataNascita(res.getDate("dataNascita"));
+                current.setFrasePresentazione(res.getString("frasePresentazione"));
+                current.setEmail(res.getString("email"));
+                current.setPassword(res.getString("password"));
+                current.setUrlFotoProfilo(res.getString("urlFotoProfilo"));
+                
+                listaUtenti.add(current);
+            }
+            return listaUtenti;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
 }
