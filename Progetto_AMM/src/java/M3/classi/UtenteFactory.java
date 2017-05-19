@@ -123,12 +123,12 @@ public class UtenteFactory {
     }
     public ArrayList<Utente> getListaUtenti() {
         try {
-        ArrayList<Utente> listaUtenti = new ArrayList<Utente>();
+        ArrayList<Utente> listaUtenti = new ArrayList<>();
         
             // path, username, password
             Connection conn = DriverManager.getConnection(connectionString, "username", "password");
             
-            String query =  "select * from utenti ";
+            String query =  "select * from utente ";
            
             // Prepared Statement
             PreparedStatement stmt = conn.prepareStatement(query);

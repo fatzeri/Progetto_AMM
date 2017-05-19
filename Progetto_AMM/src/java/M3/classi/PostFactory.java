@@ -52,9 +52,9 @@ public class PostFactory {
             Connection conn = DriverManager.getConnection(connectionString, "username", "password");
             
             String query = 
-                      "select * from posts "
+                      "select * from post "
                     + "join postType on post.tipo = postType.postType_id "
-                    + "where post_id = ?";
+                    + "where post_id = ?";    
             
             // Prepared Statement
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -95,7 +95,8 @@ public class PostFactory {
     }
 
     public List getPostList(Utente utente) {
-        ArrayList<Post> listaPost = new ArrayList<Post>();
+        UtenteFactory utenteFactory = UtenteFactory.getInstance();
+        ArrayList<Post> listaPost = new ArrayList<>();
         
         try {
             // path, username, password
@@ -104,13 +105,15 @@ public class PostFactory {
             String query = 
                       "select * from post "
                     + "join postType on post.tipo = postType.postType_id "
-                    + "where autore = ?";
+                    + "left join membriGruppo on post.groupDest = membriGruppo.groups "
+                    + "where post.utenteDest = ? OR membriGruppo.membro = ?";
             
             // Prepared Statement
             PreparedStatement stmt = conn.prepareStatement(query);
             
             // Si associano i valori
             stmt.setInt(1, utente.getId());
+            stmt.setInt(2, utente.getId());
             
             // Esecuzione query
             ResultSet res = stmt.executeQuery();
@@ -123,7 +126,7 @@ public class PostFactory {
                 current.setId(res.getInt("post_id"));
                 
                 //imposto l'autore del post
-                current.setUser(utente);
+                current.setUser(utenteFactory.getUtenteById(res.getInt("autore")));
                 
                 //imposto text del post
                 current.setText(res.getString("text"));
@@ -132,13 +135,13 @@ public class PostFactory {
                 current.setContent(res.getString("content"));
                 
                 //imposto il tipo del post
-                current.setPostType(this.postTypeFromString(res.getString("postType_nome")));
-                
+                current.setPostType(this.postTypeFromString(res.getString("nome")));
+                /*
                 //imposto il gruppo destinatario del post
                 current.setGroupDest(res.getInt("groupDest"));
                 
                 //imposto il destinatario del post
-                current.setUtenteDest(res.getInt("utenteDest"));
+                current.setUtenteDest(res.getInt("utenteDest"));*/
                 
                 
                 listaPost.add(current);
@@ -146,11 +149,12 @@ public class PostFactory {
 
             stmt.close();
             conn.close();
+            return listaPost;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return listaPost;
+        return null;
+        
     }  
     
     private Post.Type postTypeFromString(String type){
@@ -163,7 +167,7 @@ public class PostFactory {
     
     public List getPostList(Gruppo group) {
         UtenteFactory utenteFactory = UtenteFactory.getInstance();
-        ArrayList<Post> listaPost = new ArrayList<Post>();
+        ArrayList<Post> listaPost = new ArrayList<>();
         
         try {
             // path, username, password
@@ -172,10 +176,13 @@ public class PostFactory {
             String query = 
                       "select * from post "
                     + "join postType on post.tipo = postType.postType_id "
-                    + "where post.groupDest = group.gruppo_id ";
+                    + "where post.groupDest = ?";
             
             // Prepared Statement
             PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, group.getId());
             
             // Esecuzione query
             ResultSet res = stmt.executeQuery();
@@ -188,7 +195,7 @@ public class PostFactory {
                 current.setId(res.getInt("post_id"));
                 
                 //imposto l'autore del post
-                current.setUser(utenteFactory.getUtenteById(res.getInt("user")));
+                current.setUser(utenteFactory.getUtenteById(res.getInt("autore")));
                
                 //imposto text del post
                 current.setText(res.getString("text"));
@@ -197,7 +204,7 @@ public class PostFactory {
                 current.setContent(res.getString("content"));
                 
                 //imposto il tipo del post
-                current.setPostType(this.postTypeFromString(res.getString("postType_nome")));
+                current.setPostType(this.postTypeFromString(res.getString("tipo")));
                 
                 //imposto il gruppo destinatario del post
                 current.setGroupDest(res.getInt("groupDest"));

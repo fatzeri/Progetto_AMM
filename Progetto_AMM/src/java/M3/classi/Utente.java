@@ -147,10 +147,10 @@ public class Utente
     
     public boolean controllaProfilo()
     {
-        if(this.cognome != "" &&
-           this.urlFotoProfilo != "" &&
+        if(this.cognome != null &&
+           this.urlFotoProfilo != null &&
            this.dataNascita != null &&
-           this.frasePresentazione != "")
+           this.frasePresentazione != null)
             return true;
         return false;
     }

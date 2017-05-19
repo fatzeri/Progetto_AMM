@@ -23,7 +23,6 @@ public class Gruppo {
     private String frasePresentazione;    
     private String urlFotoGruppo;
     private Utente admin;
-    private ArrayList<Utente> utenti = new ArrayList<>();
     /**
      * @return the id
      */
@@ -98,7 +97,7 @@ public class Gruppo {
     public void setAdmin(Utente admin) {
         this.admin = admin;
     }
-    
+    /*
     //controlla se un utente appartiene al gruppo
     public boolean controlUtente(Utente x)
     {
@@ -109,18 +108,5 @@ public class Gruppo {
         }  
         return false; 
     }
-    
-    /**
-     * @param utenti the utenti to set
-     */
-    public void setUtenti(ArrayList<Utente> utenti) {
-        this.utenti = utenti;
-    }
-    
-    /**
-     * @return the utenti
-     */
-    public ArrayList<Utente> getUtenti() {
-        return utenti;
-    }
+*/
 }

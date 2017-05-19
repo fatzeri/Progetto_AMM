@@ -5,6 +5,11 @@
  */
 package M3.classi;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,47 +26,89 @@ public class GruppiFactory {
         }
         return singleton;
     }
-
-    private ArrayList<Gruppo> listaGruppi = new ArrayList<Gruppo>();
     
-    private GruppiFactory() {
-        //Creazione gruppi
-        UtenteFactory utenteFactory = UtenteFactory.getInstance();
-        
-        //Clash of clans
-        Gruppo gruppo1 = new Gruppo();
-        gruppo1.setId(0);
-        gruppo1.setNome("Clash Of clans");
-        gruppo1.setFrasePresentazione("Solo per utenti pro!");
-        gruppo1.getUtenti().add(utenteFactory.getUtenteById(0));
-        gruppo1.getUtenti().add(utenteFactory.getUtenteById(1));
-        gruppo1.setUrlFotoGruppo("img/gruppo1.jpg");
-        
-
-        //Interisti per sempre
-        Gruppo gruppo2 = new Gruppo();
-        gruppo2.setId(1);
-        gruppo2.setNome("Interisti per sempre");
-        gruppo2.setFrasePresentazione("#AMALA");
-        gruppo2.setUrlFotoGruppo("img/gruppo2.jpg");
-        gruppo2.getUtenti().add(utenteFactory.getUtenteById(0));
-        gruppo2.getUtenti().add(utenteFactory.getUtenteById(2));
-        
-        listaGruppi.add(gruppo1);
-        listaGruppi.add(gruppo2);
-        
+    //Gestione DB
+    private String connectionString;
+    
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+    
+    public String getConnectionString(){
+            return this.connectionString;
+    }
+    //Fine gestione DB
+    
+    private ArrayList<Gruppo> listaGruppi = new ArrayList<>();
+    
+    private GruppiFactory() {        
     }
 
     public Gruppo getGruppoById(int id) {
-        for (Gruppo gruppo : this.listaGruppi) {
-            if (gruppo.getId() == id) {
-                return gruppo;
+        try{  
+            UtenteFactory utenteFactory = UtenteFactory.getInstance();
+            
+            String query =  "select * from gruppo where gruppo_id = ?";
+            
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            stmt.setInt(1, id);
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+            
+            Gruppo current = new Gruppo();
+            
+            if (res.next()) {
+                current.setId(res.getInt("gruppo_id"));
+                current.setNome(res.getString("nome"));
+                current.setFrasePresentazione(res.getString("frasePresentazione"));
+                current.setUrlFotoGruppo(res.getString("urlFotoProfilo"));
+                current.setAdmin(utenteFactory.getUtenteById(res.getInt("amministratore")));
             }
+            return current; 
+        
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
     
     public ArrayList<Gruppo> getListaGruppi(){
-        return listaGruppi;
+        try {
+            UtenteFactory utenteFactory = UtenteFactory.getInstance();
+            ArrayList<Gruppo> list = new ArrayList<>();
+        
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+            
+            String query =  "select * from gruppo ";
+           
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+            
+            while (res.next()) {
+                Gruppo current = new Gruppo();
+                
+                current.setId(res.getInt("gruppo_id"));
+                current.setNome(res.getString("nome"));
+                current.setFrasePresentazione(res.getString("frasePresentazione"));
+                current.setUrlFotoGruppo(res.getString("urlFotoProfilo"));
+                current.setAdmin(utenteFactory.getUtenteById(res.getInt("amministratore")));
+                
+                list.add(current);
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
 }

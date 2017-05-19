@@ -5,6 +5,7 @@
  */
 package M3.servlet;
 
+import M3.classi.GruppiFactory;
 import M3.classi.PostFactory;
 import M3.classi.Utente;
 import M3.classi.UtenteFactory;
@@ -52,6 +53,7 @@ public class Login extends HttpServlet {
         //IMPOSTO LA CONNECTION STRING PER OGNI FACTORY
         UtenteFactory.getInstance().setConnectionString(dbConnection);
         PostFactory.getInstance().setConnectionString(dbConnection);
+        GruppiFactory.getInstance().setConnectionString(dbConnection);
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

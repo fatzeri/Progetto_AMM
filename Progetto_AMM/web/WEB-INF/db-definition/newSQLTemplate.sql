@@ -48,7 +48,13 @@ CREATE TABLE post (
     FOREIGN KEY (utenteDest) REFERENCES utente(utente_id)
 );
 
-
+CREATE TABLE membriGruppo (
+   membro INTEGER,
+   FOREIGN KEY (membro) REFERENCES utente(utente_id),
+   groups INTEGER,
+   FOREIGN KEY (groups) REFERENCES gruppo(gruppo_id),
+   PRIMARY KEY (membro, groups)
+);
 
 CREATE TABLE amicizie (
    follower INTEGER,
@@ -75,7 +81,7 @@ VALUES (default,
         'Djanni',
         'Tocco',
         '2010-05-10',
-        '',
+        null,
         'djannigatto@gmail.com',
         '123',
         'img/utente2.jpg');
@@ -100,6 +106,21 @@ VALUES (default, 'IMAGE');
 
 INSERT INTO postType (postType_id, nome)
 VALUES (default, 'LINK');
+
+
+INSERT INTO gruppo (gruppo_id, nome, frasePresentazione, urlFotoProfilo, amministratore)
+VALUES (default,
+        'Clash of clans',
+        'Solo per utenti pro!',
+        'img/gruppo1.jpg',
+        1);
+
+INSERT INTO gruppo (gruppo_id, nome, frasePresentazione, urlFotoProfilo, amministratore)
+VALUES (default,
+        'Interisti per sempre',
+        '#AMALA!',
+        'img/gruppo2.jpg',
+        3);
 
 --Popolamento tabella post
 
@@ -148,6 +169,15 @@ VALUES (default,
         null,
         3);
 
+INSERT INTO post (post_id, autore, text, content, tipo, groupDest, utenteDest)
+VALUES (default,
+        3,
+        'Ciao a tutti',
+        null,
+        1,
+        2,
+        null);
+
 --Popolamento tabella Hearts (relativa alle amicizie)
 INSERT INTO amicizie (follower, followed)
 VALUES (1, 2),
@@ -159,16 +189,9 @@ INSERT INTO amicizie (follower, followed)
 VALUES (3, 1),
        (3, 2);
 
-INSERT INTO gruppo (gruppo_id, nome, frasePresentazione, urlFotoProfilo, amministratore)
-VALUES (default,
-        'Clash of clans',
-        'Solo per utenti pro!',
-        'img/gruppo1.jpg',
-        1);
 
-INSERT INTO gruppo (gruppo_id, nome, frasePresentazione, urlFotoProfilo, amministratore)
-VALUES (default,
-        'Interisti per sempre',
-        '#AMALA!',
-        'img/gruppo2.jpg',
-        3);
+INSERT INTO membriGruppo (membro, groups)
+VALUES (1,1),
+       (1,2),
+       (2,1),
+       (3,2);
