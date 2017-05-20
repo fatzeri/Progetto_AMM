@@ -76,13 +76,16 @@ public class Bacheca extends HttpServlet {
                 
                 Gruppo group = (Gruppo) GruppiFactory.getInstance().getGruppoById(idGruppo);
                 request.setAttribute("group", group);
-                
+                //Assegno a where 0 per indicare che siamo in un gruppo
+                request.setAttribute("where", 0);
                 List<Post> posts = PostFactory.getInstance().getPostList(group);
                 request.setAttribute("posts", posts);
             }
             else{
             // lista posts utente
                 List<Post> posts = PostFactory.getInstance().getPostList(user);
+                //Assegno a where 0 per indicare che siamo in un utente
+                request.setAttribute("where", 1);
                 request.setAttribute("posts", posts);
             }
             // Bacheca

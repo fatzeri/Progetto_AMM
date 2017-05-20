@@ -232,4 +232,52 @@ public class PostFactory {
             else
                 return 2;
     }
+    
+    public void inserimentoPost(Utente autore, String mex, String allegato, String postType, int groupDest,int utenteDest)
+    {
+        try{ 
+        // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+        
+            String query =  "INSERT into post (post_id, autore, text, content, tipo, groupdest, utenteDest) "
+                    + "values (default, ?, ?, ?, ?, ?, ?)";
+           
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, autore.getId());
+            stmt.setString(2, mex);
+            stmt.setString(3, allegato);
+            if(postType.equals("TEXT"))
+                stmt.setInt(4, 1);
+            if(postType.equals("IMAGE"))
+                stmt.setInt(4, 2);
+            if(postType.equals("LINK"))
+                stmt.setInt(4, 3);
+            if(groupDest == 0)
+                stmt.setNull(5, java.sql.Types.INTEGER);
+            else
+            {
+                stmt.setInt(5, groupDest);
+            }
+            if(utenteDest == 0)
+            {
+                stmt.setNull(6, java.sql.Types.INTEGER);
+            }
+            else
+            {
+                stmt.setInt(6, utenteDest);
+            }
+            
+            // Esecuzione query
+            int res = stmt.executeUpdate();
+            
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

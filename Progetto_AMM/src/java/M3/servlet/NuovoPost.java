@@ -13,6 +13,10 @@ import M3.classi.Utente;
 import M3.classi.UtenteFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +29,6 @@ import javax.servlet.http.HttpSession;
  * @author Federico
  */
 public class NuovoPost extends HttpServlet {
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,31 +52,76 @@ public class NuovoPost extends HttpServlet {
         if (session != null && session.getAttribute("loggedIn") != null && session.getAttribute("loggedIn").equals(true)) {
             
             Utente user = UtenteFactory.getInstance().getUtenteById(Integer.parseInt(request.getParameter("idUtente")));
+            Gruppo group = null;
+            String idGroup = null;
+            //Se sto cercando di scrivere in un gruppo imposto le variabili del gruppo coi valori
+            if(!(request.getParameter("idGruppo").equals("")))
+            {
+                group = GruppiFactory.getInstance().getGruppoById(Integer.parseInt(request.getParameter("idGruppo")));
+                idGroup = request.getParameter("idGruppo");
+                request.setAttribute("idGruppo", idGroup);
+            }
+            //altrimenti lascio tutto a null
+            else
+            {
+                request.setAttribute("idGruppo", "");
+            }
             request.setAttribute("user", user);
+            
             String mex;
             String conferma;
             String allegato;
+            String postType;
+            
             // Utente autenticato
-            request.setAttribute("loggedUser", (Utente) UtenteFactory.getInstance().getUtenteById((int) session.getAttribute("idUtente")));
-
-                
+            request.setAttribute("loggedUser", (Utente) UtenteFactory.getInstance().getUtenteById((int) session.getAttribute("idUtente"))); 
+            Utente autore = UtenteFactory.getInstance().getUtenteById((int) session.getAttribute("idUtente"));
+            
                 mex = request.getParameter("textPost");
                 conferma = request.getParameter("conferma");
                 allegato = request.getParameter("allegato");
+                postType = request.getParameter("postType");
+                
                 if(conferma != null && conferma.equals("OK"))
                 {
-                    request.setAttribute("mexConferma", "Hai scritto sulla bacheca di ");
-                    request.setAttribute("nome", user.getNome());
+                    int groupDest, utenteDest;
                     
+                    request.setAttribute("mexConferma", "Hai scritto sulla bacheca di ");
+                    if(idGroup == null)
+                    {
+                        request.setAttribute("nome", user.getNome());
+                        request.setAttribute("cognome", user.getCognome());
+                        groupDest = 0;
+                        utenteDest = user.getId();
+                    }
+                    else
+                    {
+                        request.setAttribute("nome", group.getNome());
+                        groupDest = group.getId();
+                        utenteDest = 0;
+                    }
+                    
+                    PostFactory.getInstance().inserimentoPost(autore, mex, allegato, postType, groupDest, utenteDest);
+                     
                     request.getRequestDispatcher("Bacheca?user=" + user.getId()).forward(request, response);
                 }
                 else
                 {
-                    request.setAttribute("mexConferma", "Hai scritto sulla bacheca di: ");
-                    request.setAttribute("nome", user.getNome());
-                    request.setAttribute("cognome", user.getCognome());
+                    //Se idGroup è nullo vuol dire che sto cercando di scrivere in un utente
+                    if(idGroup == null)
+                    {
+                        request.setAttribute("nome", user.getNome());
+                        request.setAttribute("cognome", user.getCognome());                      
+                    }
+                    //se idGroup non è nullo vuol dire che sto cercando di scrivere in gruppo
+                    else
+                    {
+                        request.setAttribute("nome", group.getNome());
+                    }
+                    request.setAttribute("mexConferma", "Hai scritto sulla bacheca di ");
                     request.setAttribute("textPost", mex);
                     request.setAttribute("allegato", allegato);
+                    request.setAttribute("postType", postType);
                     request.getRequestDispatcher("confermaPost.jsp").forward(request, response);
                 }
         }
@@ -85,6 +133,8 @@ public class NuovoPost extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         }
     }
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

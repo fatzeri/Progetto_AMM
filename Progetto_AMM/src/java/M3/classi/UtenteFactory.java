@@ -156,4 +156,47 @@ public class UtenteFactory {
         
         return null;
     }
+    
+    public boolean aggiornaProfilo(Utente user)
+    {
+        try{ 
+        // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+        
+            String query =  "UPDATE utente SET "
+                    + "nome = ?, "
+                    + "cognome = ?, "
+                    + "dataNascita = ?, "
+                    + "frasePresentazione = ?, "
+                    + "email = ?, "
+                    + "password = ?, "
+                    + "urlFotoProfilo = ? "
+                    + "where utente_id = ? ";
+           
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setString(1, user.getNome());
+            stmt.setString(2, user.getCognome());
+            stmt.setDate(3, user.getDataNascita());
+            stmt.setString(4, user.getFrasePresentazione());
+            stmt.setString(5, user.getEmail());
+            stmt.setString(6, user.getPassword());
+            stmt.setString(7, user.getUrlFotoProfilo());
+            stmt.setInt(8, user.getId());
+            
+            // Esecuzione query
+            int res = stmt.executeUpdate();
+            
+            if(res > 0)
+                return true;
+            return false;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }    
+   
 }

@@ -38,9 +38,10 @@ public class Profilo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        
         request.setAttribute("page", "profilo");
-
+        request.setAttribute("users", UtenteFactory.getInstance().getListaUtenti());
+        request.setAttribute("groups", GruppiFactory.getInstance().getListaGruppi());
+        
         // Recupero della sessione
         HttpSession session = request.getSession(false);
 
@@ -57,15 +58,28 @@ public class Profilo extends HttpServlet {
                 if(((Utente) request.getAttribute("loggedUser")).getId() == (Integer.parseInt(request.getParameter("idUtente")))) {
 
                     // Dati inviati dal form
+                    user.setId(((Utente) request.getAttribute("loggedUser")).getId());
                     user.setNome((String) request.getParameter("nome"));
                     user.setCognome((String) request.getParameter("cognome"));
                     user.setDataNascita( Date.valueOf( request.getParameter("data")));
                     user.setFrasePresentazione((String) request.getParameter("presentazione"));
                     user.setPassword((String) request.getParameter("password"));
                     user.setUrlFotoProfilo((String) request.getParameter("url"));
-                    
-                    // Dati aggiornati
-                    request.setAttribute("aggiornati", "I dati sono stati aggiornati!");
+                    if(!(user.getNome().equals("") || user.getPassword().equals("")))
+                    {
+                        if(UtenteFactory.getInstance().aggiornaProfilo(user)){
+                            // Dati aggiornati
+                            request.setAttribute("aggiornati", "I dati sono stati aggiornati!");
+                        }
+                        else
+                        {
+                            request.setAttribute("aggiornati", "I dati non sono stati inseriti correttamente!");
+                        }
+                    }
+                    else
+                    {
+                        request.setAttribute("aggiornati", "Non hai compilato i campi obbligatori");
+                    }
                     request.setAttribute("user", user);
                     request.getRequestDispatcher("profilo.jsp").forward(request, response);
                 }

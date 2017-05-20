@@ -31,9 +31,17 @@
             <div id="listaPost">
               
                 <!-- frase di presentazione dell'utente -->
-                <div id="frase">
+                <c:if test="${where == 1}">
+                <div class="frase">
                     ${user.getNome()} ${user.getCognome()} : ${user.getFrasePresentazione()} 
                 </div>
+                </c:if>
+                
+                <c:if test="${where == 0}">
+                <div class="frase">
+                    ${group.getNome()} : ${group.getFrasePresentazione()} 
+                </div>
+                </c:if>
                 
                 <div id="formNewPost">
                     <form action="NuovoPost" method="post">
@@ -42,7 +50,15 @@
                                 <textarea name="textPost" id="textPost">Scrivi qualcosa...</textarea>
                             </div>
                         </div>
+                        
                         <input type="hidden" name="idUtente" value="${user.getId()}">
+                        <c:if test="${where == 1}">
+                            <input type="hidden" name="idGruppo" value="">
+                        </c:if> 
+                        <!-- se sto cercando di scrivere in un gruppo passo come parametro anche l'id -->
+                        <c:if test="${where == 0}">
+                            <input type="hidden" name="idGruppo" value="${group.getId()}">
+                        </c:if>    
                         <div>
                             <input type="radio" name="postType" value="TEXT" checked="checked" /> Testo
                             <input type="radio" name="postType" value="IMAGE" /> Immagine

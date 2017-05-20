@@ -147,13 +147,14 @@ public class Utente
     
     public boolean controllaProfilo()
     {
-        if(this.cognome != null &&
-           this.urlFotoProfilo != null &&
-           this.dataNascita != null &&
-           this.frasePresentazione != null)
-            return true;
-        return false;
+        if(this.cognome.equals("")  ||
+           this.urlFotoProfilo.equals("") ||
+           this.dataNascita == null ||
+           this.frasePresentazione.equals(""))
+            return false;
+        return true;
     }
+    
     /*
     @Override
     public boolean equals(Object altroUtente) {

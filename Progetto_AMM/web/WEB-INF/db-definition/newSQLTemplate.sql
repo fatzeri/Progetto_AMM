@@ -81,7 +81,7 @@ VALUES (default,
         'Djanni',
         'Tocco',
         '2010-05-10',
-        null,
+        '',
         'djannigatto@gmail.com',
         '123',
         'img/utente2.jpg');
@@ -128,7 +128,7 @@ INSERT INTO post (post_id, autore, text, content, tipo, groupDest, utenteDest)
 VALUES (default,
         1,
         'Per me è la cipolla',
-        null,
+        '',
         1,
         null,
         1);
@@ -137,7 +137,7 @@ INSERT INTO post (post_id, autore, text, content, tipo, groupDest, utenteDest)
 VALUES (default,
         1,
         'Passa parola',
-        null,
+        '',
         1,
         null,
         1);
@@ -173,7 +173,7 @@ INSERT INTO post (post_id, autore, text, content, tipo, groupDest, utenteDest)
 VALUES (default,
         3,
         'Ciao a tutti',
-        null,
+        '',
         1,
         2,
         null);
