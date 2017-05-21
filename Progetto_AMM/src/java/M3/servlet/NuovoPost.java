@@ -102,8 +102,16 @@ public class NuovoPost extends HttpServlet {
                     }
                     
                     PostFactory.getInstance().inserimentoPost(autore, mex, allegato, postType, groupDest, utenteDest);
-                     
-                    request.getRequestDispatcher("Bacheca?user=" + user.getId()).forward(request, response);
+                    //faccio il redirect verso l'utente destinatario
+                    if(groupDest == 0)
+                    {
+                        request.getRequestDispatcher("Bacheca?user=" + utenteDest).forward(request, response);
+                    }
+                    //faccio il redirect verso il gruppo destinatario
+                    if(utenteDest == 0)
+                    {
+                        request.getRequestDispatcher("Bacheca?group=" + groupDest).forward(request, response);
+                    }
                 }
                 else
                 {

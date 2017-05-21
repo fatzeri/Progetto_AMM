@@ -161,7 +161,8 @@ public class PostFactory {
         
         if(type.equals("IMAGE"))
             return Post.Type.IMAGE;
-        
+        else if(type.equals("LINK"))
+            return Post.Type.LINK;
         return Post.Type.TEXT;
     }
     
@@ -229,8 +230,11 @@ public class PostFactory {
         //È realizzabile in modo più robusto rispetto all'hardcoding degli indici
         if(type == Post.Type.TEXT)
                 return 1;
-            else
-                return 2;
+        else if(type == Post.Type.IMAGE)
+            return 2;
+        else
+            return 3;
+       
     }
     
     public void inserimentoPost(Utente autore, String mex, String allegato, String postType, int groupDest,int utenteDest)

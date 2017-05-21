@@ -89,7 +89,7 @@
                             </c:if>
                             <c:if test="${post.postType == 'LINK'}">
                                 <p>${post.text}</p>
-                                <a href="${post.content}">#AMALA</a>
+                                <a href="${post.content}">Clicca qui per visualizzare il link</a>
                             </c:if>    
                         </div>
                     </div>
