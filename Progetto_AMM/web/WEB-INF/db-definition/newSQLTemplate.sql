@@ -191,13 +191,11 @@ VALUES (default,
 --Popolamento tabella Hearts (relativa alle amicizie)
 INSERT INTO amicizie (follower, followed)
 VALUES (1, 2),
-       (1, 3),
        (2, 1),
        (2, 3);
 
 INSERT INTO amicizie (follower, followed)
-VALUES (3, 1),
-       (3, 2);
+VALUES (3, 2);
 
 
 INSERT INTO membriGruppo (membro, groups)

@@ -29,48 +29,62 @@
             </div>                
             
             <div id="listaPost">
-              
+                
+                <div class="amico">
+                    <c:if test = "${app == 1}">
+                        <img class="hearth" alt="amicizia" src="img/amico.png">
+                    </c:if>
+                    <c:if test = "${app == 0}">
+                        <c:if test="${where == 1}">
+                            <a href="Add?idUser=${user.getId()}&idGroup=-1"><img class="hearth" alt="Foto amicizia" src="img/aggiungi_amico.png"></a>
+                        </c:if>
+                        <c:if test="${where == 0}">
+                            <a href="Add?idGroup=${group.getId()}&idUser=-1"><img class="hearth" alt="Foto amicizia" src="img/aggiungi_amico.png"></a>
+                        </c:if>    
+                    </c:if>
+                </div>
                 <!-- frase di presentazione dell'utente -->
                 <c:if test="${where == 1}">
-                <div class="frase">
-                    ${user.getNome()} ${user.getCognome()} : ${user.getFrasePresentazione()} 
-                </div>
+                    <div class="frase">
+                        ${user.getNome()} ${user.getCognome()} : ${user.getFrasePresentazione()} 
+                    </div>
                 </c:if>
-                
                 <c:if test="${where == 0}">
-                <div class="frase">
-                    ${group.getNome()} : ${group.getFrasePresentazione()} 
-                </div>
+                    <div class="frase">
+                        ${group.getNome()} : ${group.getFrasePresentazione()}
+                    </div>
                 </c:if>
                 
-                <div id="formNewPost">
-                    <form action="NuovoPost" method="post">
-                        <div id="postContent">
-                            <div>
-                                <textarea name="textPost" id="textPost">Scrivi qualcosa...</textarea>
+                <c:if test = "${app == 1}">
+                    <div id="formNewPost">
+                        <form action="NuovoPost" method="post">
+                            <div id="postContent">
+                                <div>
+                                    <textarea name="textPost" id="textPost">Scrivi qualcosa...</textarea>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <input type="hidden" name="idUtente" value="${user.getId()}">
-                        <c:if test="${where == 1}">
-                            <input type="hidden" name="idGruppo" value="">
-                        </c:if> 
-                        <!-- se sto cercando di scrivere in un gruppo passo come parametro anche l'id -->
-                        <c:if test="${where == 0}">
-                            <input type="hidden" name="idGruppo" value="${group.getId()}">
-                        </c:if>    
-                        <div>
-                            <input type="radio" name="postType" value="TEXT" checked="checked" /> Testo
-                            <input type="radio" name="postType" value="IMAGE" /> Immagine
-                            <input type="radio" name="postType" value="LINK" /> Link
-                        </div>
-                        <div id="allegato">
-                            <label for="allegato">Allegato</label>
-                            <input type="text" name="allegato"/>
-                        </div>
-                        <div id="button"><button type="submit">Scrivi</button></div>
-                    </form>
-                </div>
+
+                            <input type="hidden" name="idUtente" value="${user.getId()}">
+                            <c:if test="${where == 1}">
+                                <input type="hidden" name="idGruppo" value="">
+                            </c:if> 
+                            <!-- se sto cercando di scrivere in un gruppo passo come parametro anche l'id -->
+                            <c:if test="${where == 0}">
+                                <input type="hidden" name="idGruppo" value="${group.getId()}">
+                            </c:if>    
+                            <div>
+                                <input type="radio" name="postType" value="TEXT" checked="checked" /> Testo
+                                <input type="radio" name="postType" value="IMAGE" /> Immagine
+                                <input type="radio" name="postType" value="LINK" /> Link
+                            </div>
+                            <div id="allegato">
+                                <label for="allegato">Allegato</label>
+                                <input type="text" name="allegato"/>
+                            </div>
+                            <div id="button"><button type="submit">Scrivi</button></div>
+                        </form>
+                    </div>
+                </c:if>        
                 <div class="messaggio">${mexConferma} ${nome}</div>
                 <!-- lista dei post-->
                 <c:forEach var="post" items="${posts}">

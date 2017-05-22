@@ -80,6 +80,10 @@ public class Bacheca extends HttpServlet {
                 request.setAttribute("where", 0);
                 List<Post> posts = PostFactory.getInstance().getPostList(group);
                 request.setAttribute("posts", posts);
+                if(GruppiFactory.getInstance().controllaApp(((Utente) UtenteFactory.getInstance().getUtenteById((int) session.getAttribute("idUtente"))).getId(), idGruppo))
+                    request.setAttribute("app", 1);
+                else
+                    request.setAttribute("app", 0);
             }
             else{
             // lista posts utente
@@ -87,8 +91,14 @@ public class Bacheca extends HttpServlet {
                 //Assegno a where 0 per indicare che siamo in un utente
                 request.setAttribute("where", 1);
                 request.setAttribute("posts", posts);
+                //controllo se l'utente loggato e l'utente proprietario della bacheca che voglio guardare sono amici
+                if(UtenteFactory.getInstance().controllaApp(((Utente) UtenteFactory.getInstance().getUtenteById((int) session.getAttribute("idUtente"))).getId(), user.getId()))
+                    request.setAttribute("app", 1);
+                else
+                    request.setAttribute("app", 0);
             }
             // Bacheca
+           
             request.getRequestDispatcher("bacheca.jsp").forward(request, response);
         }
         else {

@@ -24,6 +24,10 @@
         <servlet-name>Delete</servlet-name>
         <servlet-class>M3.servlet.Delete</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Add</servlet-name>
+        <servlet-class>M3.servlet.Add</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Bacheca</servlet-name>
         <url-pattern>/Bacheca</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>Delete</servlet-name>
         <url-pattern>/Delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Add</servlet-name>
+        <url-pattern>/Add</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

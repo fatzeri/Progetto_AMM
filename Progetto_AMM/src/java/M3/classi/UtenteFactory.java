@@ -288,5 +288,65 @@ public class UtenteFactory {
         }
         return flag;
     }
-   
+    
+    //funzione che controlla l'amicizia
+    public boolean controllaApp(int idUtente, int idUser)
+    {
+        boolean flag = false;
+        if(idUtente == idUser)
+            flag = true;
+        else
+        {
+            try{
+                Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+
+                String query =  "select * from amicizie where follower = ? AND followed = ? ";
+
+                // Prepared Statement
+                PreparedStatement stmt = conn.prepareStatement(query);
+
+                stmt.setInt(1, idUtente);
+                stmt.setInt(2, idUser);
+                // Esecuzione query
+                ResultSet res = null;
+                res = stmt.executeQuery();
+
+                if(res.next())
+                    flag = true;
+                else 
+                    flag = false;
+
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return flag;
+    }
+    
+    public void addHearths(int user1, int user2)
+    {
+        try{
+            Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+
+            String query =  "INSERT INTO amicizie (follower, followed)  VALUES (?, ?) ";
+            String query2 =  "INSERT INTO amicizie (follower, followed)  VALUES (?, ?) ";
+            
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            PreparedStatement stmt2 = conn.prepareStatement(query2);
+            
+            stmt.setInt(1, user1);
+            stmt.setInt(2, user2);
+            stmt2.setInt(1, user2);
+            stmt2.setInt(2, user1);
+            
+            // Esecuzione query
+            stmt.executeUpdate();
+            stmt2.executeUpdate();
+            
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+    }
 }

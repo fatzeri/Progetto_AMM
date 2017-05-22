@@ -111,4 +111,57 @@ public class GruppiFactory {
         
         return null;
     }
+    //funzione che controlla l'appartenenza ad un gruppo
+    public boolean controllaApp(int idUtente, int idGruppo)
+    {
+        try{
+            Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+            
+            String query =  "select * from membriGruppo where membro = ? AND groups = ? ";
+           
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            stmt.setInt(1, idUtente);
+            stmt.setInt(2, idGruppo);
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+            
+            if(res.next())
+                return true;
+            else 
+                return false;
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public void addAtGroup(int user, int gruppo)
+    {
+        try{
+            Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+
+            String query =  "INSERT INTO membriGruppo (membro, groups)  VALUES (?, ?) ";
+            String query2 =  "INSERT INTO membriGruppo (membro, groups)  VALUES (?, ?) ";
+            
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            PreparedStatement stmt2 = conn.prepareStatement(query2);
+            
+            stmt.setInt(1, user);
+            stmt.setInt(2, gruppo);
+            stmt2.setInt(1, gruppo);
+            stmt2.setInt(2, user);
+            
+            // Esecuzione query
+            stmt.executeUpdate();
+            stmt2.executeUpdate();
+            
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+    }
 }
