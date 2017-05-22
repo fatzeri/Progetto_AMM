@@ -143,22 +143,16 @@ public class GruppiFactory {
         try{
             Connection conn = DriverManager.getConnection(connectionString, "username", "password");
 
-            String query =  "INSERT INTO membriGruppo (membro, groups)  VALUES (?, ?) ";
-            String query2 =  "INSERT INTO membriGruppo (membro, groups)  VALUES (?, ?) ";
-            
+            String query =  "INSERT INTO membriGruppo (membro, groups)  VALUES (?, ?) ";            
             
             // Prepared Statement
             PreparedStatement stmt = conn.prepareStatement(query);
-            PreparedStatement stmt2 = conn.prepareStatement(query2);
             
             stmt.setInt(1, user);
             stmt.setInt(2, gruppo);
-            stmt2.setInt(1, gruppo);
-            stmt2.setInt(2, user);
             
             // Esecuzione query
             stmt.executeUpdate();
-            stmt2.executeUpdate();
             
             }catch (SQLException e) {
                 e.printStackTrace();
