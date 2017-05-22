@@ -197,6 +197,96 @@ public class UtenteFactory {
             e.printStackTrace();
         }
         return false;
-    }    
+    }  
+    
+    public boolean cancellaUtente( Utente user) 
+    {
+        boolean flag = false;
+        try{            
+            // path, username, password
+            Connection con = DriverManager.getConnection(connectionString, "username", "password");
+            PreparedStatement deletePost = null;
+            PreparedStatement deleteUser = null;
+            PreparedStatement deleteAmicizie = null;
+            PreparedStatement deleteForGruppo = null;
+            PreparedStatement searchAdmin = null;
+            PreparedStatement changeAdmin = null;
+            
+            String queryPost = "DELETE FROM post where utenteDest = ? OR autore = ?";
+            String queryUser = "DELETE FROM utente where utente_id = ? ";
+            String queryAmicizie = " DELETE FROM amicizie where follower = ? OR followed = ?";
+            String queryGruppo = " DELETE FROM membriGruppo where membro = ?";
+            String queryAdmin = "SELECT * FROM gruppo where amministratore = ?";
+            String queryChange = "UPDATE gruppo SET amministratore = 0 where amministratore = ?";
+            
+            try {
+                con.setAutoCommit(false);
+                deletePost = con.prepareStatement(queryPost);
+                deleteUser = con.prepareStatement(queryUser);
+                deleteAmicizie = con.prepareStatement(queryAmicizie);
+                deleteForGruppo = con.prepareStatement(queryGruppo);
+                searchAdmin = con.prepareStatement(queryAdmin);
+                changeAdmin = con.prepareStatement(queryChange);
+                
+                deletePost.setInt(1, user.getId());
+                deletePost.setInt(2, user.getId());
+                deleteUser.setInt(1, user.getId());
+                deleteAmicizie.setInt(1, user.getId());
+                deleteAmicizie.setInt(2, user.getId());
+                deleteForGruppo.setInt(1, user.getId());
+                searchAdmin.setInt(1, user.getId());  
+                changeAdmin.setInt(1, user.getId());
+                
+                int a=deletePost.executeUpdate();
+                int b=deleteAmicizie.executeUpdate();
+                int c=deleteForGruppo.executeUpdate();
+                int d;
+                //Controllo se l'utente che sto cercando di eliminare è admin di un gruppo
+                ResultSet res = searchAdmin.executeQuery();
+                if(res != null)
+                {
+                    //se lo è imposto come admin l'utente amministratore
+                    d=changeAdmin.executeUpdate();
+                }
+                //cancello l'utente
+                int e=deleteUser.executeUpdate();
+                
+                flag = true;
+                con.commit();
+                
+            } catch (SQLException e ) {
+                e.printStackTrace();
+                if (con != null) {
+                    try {
+                        System.err.print("Transaction is being rolled back");
+                        con.rollback();
+                    } catch(SQLException excep) {
+                        excep.printStackTrace();
+                    }
+                }
+            } finally {
+                if (deletePost != null) {
+                    deletePost.close();
+                }   
+                if (deleteUser != null) {
+                    deleteUser.close();
+                } 
+                if (deleteAmicizie != null) {
+                    deleteAmicizie.close();
+                } 
+                if (deleteForGruppo != null) {
+                    deleteForGruppo.close();
+                } 
+            con.setAutoCommit(true);
+            }
+        
+        
+        }
+        catch (SQLException e )
+        {
+             e.printStackTrace();       
+        }
+        return flag;
+    }
    
 }

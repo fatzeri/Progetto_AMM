@@ -3,5 +3,6 @@
 
 <div id="logout">
     <div id="logoutNome">${loggedUser.getNome()} ${loggedUser.getCognome()}</div>
-    <div id="logoutLink"><a href="Logout">Logout</a></div>
+    <div class="logoutLink"><a href="Logout">Logout</a>
+    <c:if test = "${page == 'profilo'}"><a href="Delete">Discrivimi</a></div></c:if>
 </div>

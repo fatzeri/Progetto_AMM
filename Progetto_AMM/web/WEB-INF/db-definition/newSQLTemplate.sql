@@ -65,6 +65,16 @@ CREATE TABLE amicizie (
 );
 
 --Popolamento tabella utente
+INSERT INTO utente (utente_id, nome, cognome,  dataNascita, frasePresentazione, email, password, urlfotoprofilo)
+VALUES (0,
+        'Admin',
+        'Fenu',
+        '1960-02-16',
+        'Salve miei sudditi',
+        'admin@gmail.com',
+        '123',
+        'img/fenu.jpg');
+
 
 INSERT INTO utente (utente_id, nome, cognome,  dataNascita, frasePresentazione, email, password, urlfotoprofilo)
 VALUES (default,
@@ -79,7 +89,7 @@ VALUES (default,
 INSERT INTO utente (utente_id, nome, cognome,  dataNascita, frasePresentazione, email, password, urlfotoprofilo)
 VALUES (default,
         'Djanni',
-        'Tocco',
+        'Gatto',
         '2010-05-10',
         '',
         'djannigatto@gmail.com',

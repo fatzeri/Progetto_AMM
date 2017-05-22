@@ -20,6 +20,10 @@
         <servlet-name>NuovoPost</servlet-name>
         <servlet-class>M3.servlet.NuovoPost</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Delete</servlet-name>
+        <servlet-class>M3.servlet.Delete</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Bacheca</servlet-name>
         <url-pattern>/Bacheca</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>NuovoPost</servlet-name>
         <url-pattern>/NuovoPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Delete</servlet-name>
+        <url-pattern>/Delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

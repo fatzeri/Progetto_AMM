@@ -260,12 +260,12 @@ a:hover
     /*width: 20%;*/
     width: 160px;
 }
-#logoutLink, #logoutNome
+.logoutLink, #logoutNome
 {
     text-align: center;
     font-weight: bold;
 }
-#logoutLink a
+.logoutLink a
 {
     text-decoration: underline;
 }
