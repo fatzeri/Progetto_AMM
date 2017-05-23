@@ -38,7 +38,7 @@ foreign key userDest -> Utente.id   uno a molti
     nome                varchar(256)                unique
     frasePresentazione  varchar(256)                
     urlFotoProfilo      varchar(256)                
-    admin               integer                     Foreign key (si collega ad: id utente)
+    amministratore      integer                     Foreign key (si collega ad: id utente)
 
 foreign key admin -> Utente.id      uno a molti
 
