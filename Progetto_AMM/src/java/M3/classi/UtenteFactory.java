@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -337,5 +338,56 @@ public class UtenteFactory {
             }catch (SQLException e) {
                 e.printStackTrace();
             }
+    }
+    
+    public List getListaUtenti(String pat) {
+        List<Utente> listaUtenti = new ArrayList<Utente>();
+        
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "username", "password");
+            String query;
+            PreparedStatement stmt;
+            if(pat.equals("") || pat == null)
+            {
+                query = "select * from utente";
+                stmt = conn.prepareStatement(query);
+            }
+            else
+            {
+                query = "select * from utente where nome like ?";
+                // Prepared Statement
+                stmt = conn.prepareStatement(query);
+                // Si associano i valori
+                stmt.setString(1, "%" + pat + "%");
+            }
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+            // ciclo sulle righe restituite
+            while (res.next()) {
+                Utente current = new Utente();
+                current.setId(res.getInt("utente_id"));
+                current.setNome(res.getString("nome"));
+                current.setCognome(res.getString("cognome"));
+                current.setDataNascita(res.getDate("dataNascita"));
+                current.setFrasePresentazione(res.getString("frasePresentazione"));
+                current.setEmail(res.getString("email"));
+                current.setPassword(res.getString("password"));
+                current.setUrlFotoProfilo(res.getString("urlFotoProfilo"));
+                //l'utente amministratore non lo inserisco nella lista utenti
+                if(current.getId() != 0)
+                    listaUtenti.add(current);
+                
+            }
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return listaUtenti;
     }
 }
